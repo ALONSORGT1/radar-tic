@@ -6,7 +6,9 @@ El código conserva la ejecución en localhost y el filtro que admite únicament
 ## Backend en Vercel
 
 Importa el repositorio `ALONSORGT1/radar-tic`, rama `main`, raíz del proyecto.
-Vercel reconoce FastAPI mediante `app.py`; `.python-version` fija Python 3.12.
+Vercel reconoce FastAPI; `pyproject.toml` selecciona `app.main:app` como entrada y
+`.python-version` fija Python 3.12. La entrada explícita evita que `app.py` oculte
+el paquete `app/` al importarlo el servidor. `app.py` conserva su uso en localhost.
 `vercel.json` permite hasta 300 segundos por función, sin cambiar el plan contratado.
 
 Variables del backend:
