@@ -1,0 +1,38 @@
+name: Publicar Radar TIC en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    if: ${{ vars.RADAR_BACKEND_URL != '' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/configure-pages@v5
+      - name: Preparar únicamente la interfaz
+        run: python scripts/build_pages.py
+        env:
+          RADAR_BACKEND_URL: ${{ vars.RADAR_BACKEND_URL }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .site
+      - uses: actions/deploy-pages@v4
+        id: deployment
