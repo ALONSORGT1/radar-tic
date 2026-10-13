@@ -1,4 +1,6 @@
 import importlib.util
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +13,29 @@ spec.loader.exec_module(modulo)
 
 
 class PublicacionTests(unittest.TestCase):
+    def test_entrada_vercel_se_importa_en_un_proceso_limpio(self):
+        raiz = archivo.parents[1]
+        codigo = """
+import importlib.util
+import sys
+import tomllib
+from pathlib import Path
+from fastapi import FastAPI
+
+config = tomllib.loads(Path('pyproject.toml').read_text(encoding='utf-8'))
+nombre, objeto = config['tool']['vercel']['entrypoint'].split(':')
+ruta = Path(*nombre.split('.')).with_suffix('.py')
+spec = importlib.util.spec_from_file_location(nombre, ruta)
+modulo = importlib.util.module_from_spec(spec)
+sys.modules[nombre] = modulo
+spec.loader.exec_module(modulo)
+app = getattr(modulo, objeto)
+assert isinstance(app, FastAPI)
+assert any(getattr(ruta, 'path', '') == '/api/salud' for ruta in app.routes)
+"""
+        resultado = subprocess.run([sys.executable, '-B', '-c', codigo], cwd=raiz, capture_output=True, text=True)
+        self.assertEqual(resultado.returncode, 0, resultado.stderr)
+
     def test_solo_publica_interfaz_y_url_publica(self):
         with tempfile.TemporaryDirectory() as carpeta:
             destino = Path(carpeta)
