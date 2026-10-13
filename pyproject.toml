@@ -1,0 +1,3 @@
+[tool.vercel]
+# Evita que app.py oculte el paquete app/ al importarse en Vercel.
+entrypoint = "app.main:app"
