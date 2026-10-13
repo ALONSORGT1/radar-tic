@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.vscode/
+.env
+.env.*
+!.env.example
+.local/
+.pytest_cache/
+.vercel/
+.site/
+%SystemDrive%/

@@ -1,0 +1,16 @@
+.env
+.env.*
+.venv/
+.local/
+.git/
+.github/
+.codex/
+.agents/
+.vscode/
+.site/
+%SystemDrive%/
+docs/
+tests/
+__pycache__/
+*.pyc
+*.ps1
