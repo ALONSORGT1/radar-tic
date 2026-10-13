@@ -119,6 +119,7 @@ app.py                              # Entrada para python app.py
 .env.example                        # Ejemplo sin credenciales
 .python-version                     # Python 3.12
 requirements.txt                    # Versiones fijadas mediante pip freeze
+pyproject.toml                      # Dependencias y entrada app.main:app en Vercel
 tests/                              # Pruebas sin consumo de API
 ```
 
@@ -167,6 +168,8 @@ instancias de Vercel. Ninguna descarga consulta OpenAI.
 ## Publicación: GitHub Pages y Vercel
 
 El repositorio es [ALONSORGT1/radar-tic](https://github.com/ALONSORGT1/radar-tic).
+Abre [Radar TIC en GitHub Pages](https://alonsorgt1.github.io/radar-tic/).
+El backend se encuentra en [Vercel](https://radar-tic.vercel.app/api/salud).
 GitHub Pages publica únicamente `index.html` y `assets/`; FastAPI se ejecuta en Vercel.
 La preparación y las variables necesarias se describen en [Despliegue](docs/despliegue.md).
 
@@ -176,6 +179,9 @@ El backend público exige además `RADAR_ACCESS_CODE`, un código de acceso dife
 de la clave de OpenAI. El usuario lo introduce en la interfaz y se envía únicamente
 al backend mediante HTTPS. No se guarda en archivos públicos ni en almacenamiento
 del navegador. Sin un código configurado, Vercel rechaza las investigaciones.
+En esta computadora, el código de acceso privado está en `.local/codigo_acceso.txt`;
+ese archivo está excluido de Git y de los paquetes publicados. Es diferente de la
+credencial de OpenAI y solo debe compartirse con usuarios autorizados de Radar TIC.
 
 ## Pruebas sin consumo de API
 
@@ -190,6 +196,9 @@ JavaScript adicionales. Las pruebas utilizan un cliente de OpenAI simulado.
 La comprobación detallada del frontend está en [Integración frontend/backend](docs/integracion_frontend_backend.md).
 La validación inicial incluyó 38 pruebas automatizadas, una investigación real en el navegador, verificación
 HTTP de sus 29 fuentes y reproducciones locales para comprobar errores, cancelación y HTML malicioso.
+Las evidencias de esa validación se conservan en esta computadora, sin publicarlas.
+La validación de publicación suma 48 pruebas aprobadas y una investigación desde Pages
+con 16 fuentes verificadas. Consulta [Despliegue](docs/despliegue.md) para los resultados.
 
 ## Alcance y referencias
 
