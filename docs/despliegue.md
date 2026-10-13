@@ -3,6 +3,16 @@
 Arquitectura: navegador en GitHub Pages → FastAPI en Vercel → OpenAI Responses API.
 El código conserva la ejecución en localhost y el filtro que admite únicamente TIC.
 
+Direcciones publicadas:
+
+- Interfaz: https://alonsorgt1.github.io/radar-tic/
+- Backend: https://radar-tic.vercel.app
+- Repositorio: https://github.com/ALONSORGT1/radar-tic
+- Proyecto Vercel: https://vercel.com/acme-2f81/radar-tic
+
+El proyecto `investigador` y su conexión Git se conservaron sin cambios. Radar TIC
+dispone de su propio proyecto en Vercel y usa el repositorio `radar-tic`.
+
 ## Backend en Vercel
 
 Importa el repositorio `ALONSORGT1/radar-tic`, rama `main`, raíz del proyecto.
@@ -51,6 +61,30 @@ Las pruebas sin consumo de OpenAI verifican el contrato, los tres modos, el filt
 renderizado seguro, cancelación, control de acceso, descarga directa y paquete de Pages.
 Una validación pública debe comprobar `/api/salud`, CORS desde Pages, rechazo sin código
 y una investigación TIC con un código válido antes de considerar terminado el despliegue.
+
+Validación realizada el 13 de octubre de 2026:
+
+- 48 pruebas automatizadas aprobadas: 24 de Python y 24 del frontend.
+- GitHub Actions publicó la interfaz y Vercel desplegó FastAPI desde `main`.
+- `/api/salud`: HTTP 200, modelo `gpt-6-luna`, configuración disponible y acceso obligatorio.
+- CORS desde `https://alonsorgt1.github.io`: HTTP 200; origen ajeno: HTTP 400.
+- Investigación sin código: HTTP 401, sin consultar OpenAI.
+- Investigación real desde Pages sobre SSE y WebSocket: reporte completo, 16 fuentes
+  y 15 730 tokens reportados, incluyendo la comprobación previa de especialidad.
+- Las 16 URLs de las fuentes respondieron HTTP 200 y los enlaces usan una pestaña
+  nueva con `noopener noreferrer`.
+- Consulta de medicina en modo profundo con Web Search activado: rechazo de ámbito,
+  sin borrador, fuentes ni reporte final. La comprobación de ámbito consume tokens.
+- Descarga directa autenticada: HTTP 200, contenido `text/markdown`, nombre de archivo
+  y reporte completo. El navegador de comprobación de Codex no capturó el archivo Blob
+  generado por el botón; la entrega del archivo se verificó mediante HTTP.
+- Los archivos públicos de la interfaz no contienen credenciales y `.env` devuelve
+  HTTP 404 tanto en Pages como en Vercel.
+
+Las capturas, reportes y registros de estas comprobaciones se conservan en esta
+computadora en `docs/evidencias/`; no forman parte del repositorio público. La clave
+de OpenAI sigue disponible en `.env` para localhost y se guarda como variable sensible
+de producción en Vercel. El código privado de acceso está en `.local/codigo_acceso.txt`.
 
 Referencias: [FastAPI en Vercel](https://vercel.com/docs/frameworks/backend/fastapi) y
 [flujos de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
