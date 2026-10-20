@@ -2,6 +2,7 @@
 
 Agente investigador con FastAPI, OpenAI Responses API y Web Search, compatible con localhost y publicación separada de interfaz y backend.
 Se adaptó el proyecto Flask existente conservando su interfaz, estilos y prompt académico.
+2a1f03cc607a3a892d5c5c658e54b639239bc6631c6f5983
 
 ## Ejecutar en esta computadora
 
