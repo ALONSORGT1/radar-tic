@@ -1,426 +1,505 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Radar TIC · Agente investigador</title>
-
+      name="description"
+      content="Radar TIC: un espacio de investigación con inteligencia artificial para explorar tecnología, contrastar fuentes y construir una perspectiva clara."
+    />
+    <meta name="theme-color" content="#f8f9f5" />
+    <title>Radar TIC · Espacio de investigación</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
     <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/img/favicon-32.png"
+    />
     <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/img/favicon-16.png"
+    />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/img/apple-touch-icon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    >
-
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link
-        rel="stylesheet"
-        href="assets/css/styles.css?v=3"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css?v=20261026" />
+  </head>
+  <body>
+    <a class="skip-link" href="#pregunta">Saltar a la consulta</a>
+    <button
+      id="sidebarOverlay"
+      class="sidebar-overlay"
+      type="button"
+      aria-label="Cerrar navegación"
+      hidden
+    ></button>
+    <aside
+      id="appSidebar"
+      class="app-sidebar"
+      aria-label="Navegación principal"
     >
-</head>
-
-<body>
-
-    <div class="page-bg"></div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark app-navbar fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
-                <span class="brand-mark">
-                    <i class="bi bi-stars"></i>
-                </span>
-                Radar TIC
-            </a>
-
-            <div class="d-flex align-items-center gap-2">
-                <span class="badge badge-soft">
-                    <i class="bi bi-globe2 me-1"></i>
-                    Web Search
-                </span>
-            </div>
+      <a class="brand" href="#consulta" aria-label="Radar TIC, inicio">
+        <img src="assets/img/favicon.svg" width="40" height="40" alt="" />
+        <span>Radar <strong>TIC</strong><small>RESEARCH WORKSPACE</small></span>
+      </a>
+      <button id="btnNuevaInvestigacion" class="new-research" type="button">
+        <i class="bi bi-plus-lg" aria-hidden="true"></i> Nueva investigación
+        <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+      </button>
+      <div class="nav-caption">ESPACIO DE TRABAJO</div>
+      <nav class="workspace-nav" aria-label="Herramientas">
+        <a class="nav-item active" href="#consulta" aria-current="page"
+          ><i class="bi bi-viewfinder" aria-hidden="true"></i> Investigar
+          <span class="nav-indicator"></span
+        ></a>
+        <a class="nav-item" href="#metodo"
+          ><i class="bi bi-compass" aria-hidden="true"></i> Guía de
+          investigación</a
+        >
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="specialty-note">
+          <span class="specialty-icon"
+            ><i class="bi bi-intersect" aria-hidden="true"></i
+          ></span>
+          <p>
+            Un radar para la tecnología.<small
+              >Software, IA, datos y todo lo que los conecta.</small
+            >
+          </p>
         </div>
-    </nav>
+        <div class="sidebar-footer">
+          <span class="workspace-avatar" aria-hidden="true">R</span>
+          <div>Espacio de investigación<small>Especializado en TIC</small></div>
+          <span class="mini-dot" aria-hidden="true"></span>
+        </div>
+      </div>
+    </aside>
 
-    <header class="hero">
-        <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
+    <div class="app-shell">
+      <header class="workspace-header">
+        <div class="breadcrumb-line">
+          <button
+            id="btnMenu"
+            class="icon-button menu-button"
+            type="button"
+            aria-label="Abrir navegación"
+            aria-expanded="false"
+            aria-controls="appSidebar"
+          >
+            <i class="bi bi-list" aria-hidden="true"></i></button
+          ><span>Espacio de trabajo</span
+          ><i class="bi bi-chevron-right" aria-hidden="true"></i
+          ><strong>Investigación</strong>
+        </div>
+        <div class="header-actions">
+          <span class="ai-label"><span></span> Impulsado por IA</span
+          ><button
+            id="btnTema"
+            class="icon-button theme-button"
+            type="button"
+            aria-label="Activar tema oscuro"
+          >
+            <i class="bi bi-circle-half" aria-hidden="true"></i
+            ><span id="etiquetaTema" class="visually-hidden">Tema oscuro</span>
+          </button>
+        </div>
+      </header>
+      <main id="contenido" class="workspace-main">
+        <section class="intro" aria-labelledby="tituloPrincipal">
+          <div class="intro-copy">
+            <div class="eyebrow">
+              <span class="eyebrow-line"></span> EXPLORA. CONTRASTA. COMPRENDE.
+            </div>
+            <h1 id="tituloPrincipal">
+              Grandes preguntas.<br /><em>Nuevas perspectivas.</em>
+            </h1>
+            <p>
+              Convierte tu curiosidad en conocimiento. Investiga tecnología<br
+                class="desktop-break"
+              />
+              con inteligencia artificial y fuentes que puedes explorar.
+            </p>
+          </div>
+          <div class="radar-visual" aria-hidden="true">
+            <svg viewBox="0 0 240 200" fill="none">
+              <circle cx="120" cy="100" r="83" />
+              <circle cx="120" cy="100" r="58" />
+              <circle cx="120" cy="100" r="30" />
+              <path d="M120 9v182M29 100h182" class="radar-axis" />
+              <path d="m120 100 58-58" class="radar-ray" />
+              <circle cx="120" cy="100" r="5" class="radar-node" />
+              <circle cx="161" cy="59" r="6" class="radar-node" />
+              <circle cx="80" cy="139" r="4" class="radar-node secondary" />
+              <path d="m178 31 7 7m-7 0 7-7" class="radar-spark" /></svg
+            ><span>UNA PREGUNTA. MUCHAS CONEXIONES.</span>
+          </div>
+        </section>
 
-                    <div class="hero-card">
-                        <div class="hero-grid">
-
-                            <div>
-                                <span class="eyebrow">
-                                    PRÁCTICA 2.2 · IA APLICADA A LAS TIC
-                                </span>
-
-                                <h1 class="hero-title">
-                                    Investiga, compara y sintetiza
-                                    información con un agente de IA
-                                </h1>
-
-                                <p class="hero-text">
-                                    Escribe una pregunta y observa cómo el agente
-                                    analiza el problema, consulta fuentes en línea,
-                                    organiza la evidencia y genera un reporte
-                                    profesional.
-                                </p>
-
-                                <div class="hero-badges">
-                                    <span class="pill">
-                                        <i class="bi bi-lightbulb me-1"></i>
-                                        Planificación
-                                    </span>
-
-                                    <span class="pill">
-                                        <i class="bi bi-search me-1"></i>
-                                        Búsqueda web
-                                    </span>
-
-                                    <span class="pill">
-                                        <i class="bi bi-table me-1"></i>
-                                        Comparación
-                                    </span>
-
-                                    <span class="pill">
-                                        <i class="bi bi-file-earmark-richtext me-1"></i>
-                                        Reporte
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="hero-side">
-                                <div class="mini-panel">
-                                    <div class="mini-title">
-                                        Flujo del agente
-                                    </div>
-
-                                    <div class="mini-steps">
-                                        <div><span>1</span> Analiza la pregunta</div>
-                                        <div><span>2</span> Busca fuentes</div>
-                                        <div><span>3</span> Contrasta evidencia</div>
-                                        <div><span>4</span> Genera reporte</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
+        <div class="research-grid">
+          <section
+            id="consulta"
+            class="composer"
+            aria-labelledby="tituloConsulta"
+          >
+            <div class="composer-heading">
+              <h2 id="tituloConsulta">
+                <i class="bi bi-soundwave" aria-hidden="true"></i> ¿Qué quieres
+                descubrir?
+              </h2>
+              <span class="small-label">NUEVA INVESTIGACIÓN</span>
+            </div>
+            <label class="visually-hidden" for="pregunta"
+              >Pregunta de investigación</label
+            >
+            <textarea
+              id="pregunta"
+              class="question-box"
+              rows="5"
+              maxlength="4000"
+              aria-describedby="ayudaPregunta contadorPregunta"
+              placeholder="Escribe una pregunta, compara tecnologías o explora una idea…"
+            ></textarea>
+            <div class="input-meta">
+              <span id="ayudaPregunta"
+                >Tu punto de partida, en tus propias palabras.</span
+              ><span id="contadorPregunta">0 / 4000</span>
+            </div>
+            <div class="research-controls">
+              <div class="mode-field">
+                <label for="modo"
+                  ><i class="bi bi-sliders2" aria-hidden="true"></i>
+                  Profundidad</label
+                ><select id="modo" class="form-select">
+                  <option value="rapido">Rápido · síntesis breve</option>
+                  <option value="comparativo">
+                    Comparativo · alternativas
+                  </option>
+                  <option value="profundo">Profundo · mayor detalle</option>
+                </select>
+              </div>
+              <div class="web-option">
+                <label class="web-switch" for="usarWeb"
+                  ><input id="usarWeb" type="checkbox" checked /><span
+                    class="switch-track"
+                    aria-hidden="true"
+                  ></span
+                  ><span
+                    ><i class="bi bi-globe2" aria-hidden="true"></i> Búsqueda
+                    web</span
+                  ></label
+                >
+              </div>
+            </div>
+            <div id="contenedorAcceso" class="access-field d-none">
+              <label for="codigoAcceso"
+                ><i class="bi bi-key" aria-hidden="true"></i> Código de
+                acceso</label
+              ><input
+                id="codigoAcceso"
+                type="password"
+                class="form-control"
+                autocomplete="off"
+                placeholder="Introduce tu código privado"
+                aria-describedby="ayudaAcceso"
+              /><small id="ayudaAcceso"
+                >Solo se utiliza para autorizar esta sesión.</small
+              >
+            </div>
+            <div class="composer-actions">
+              <span class="keyboard-hint"
+                ><kbd>Ctrl</kbd> + <kbd>↵</kbd> para investigar</span
+              >
+              <div class="action-group">
+                <button
+                  id="btnCancelar"
+                  class="btn btn-outline-secondary d-none"
+                  type="button"
+                >
+                  Cancelar</button
+                ><button
+                  id="btnInvestigar"
+                  class="btn btn-primary"
+                  type="button"
+                >
+                  Iniciar investigación
+                  <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="connection-row">
+              <span class="connection-dot" aria-hidden="true"></span>
+              <p id="servidorEstado" role="status" data-estado="pending">
+                Comprobando el servidor...
+              </p>
+            </div>
+          </section>
+          <aside
+            id="metodo"
+            class="method-panel"
+            aria-labelledby="tituloMetodo"
+          >
+            <div class="method-top">
+              <span class="eyebrow">DE LA DUDA AL HALLAZGO</span
+              ><i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </div>
+            <h2 id="tituloMetodo">Menos ruido.<br />Más claridad.</h2>
+            <p>Un espacio para ir más allá<br />de la primera respuesta.</p>
+            <ol class="method-list">
+              <li>
+                <span>01</span>
+                <div>
+                  Define tu pregunta<small
+                    >Elige el enfoque y la profundidad.</small
+                  >
                 </div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  Sigue la investigación<small
+                    >Consulta el avance y las fuentes.</small
+                  >
+                </div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  Conecta los hallazgos<small
+                    >Lee, contrasta y descarga tu reporte.</small
+                  >
+                </div>
+              </li>
+            </ol>
+            <div class="method-footnote">
+              <i class="bi bi-journal-check" aria-hidden="true"></i
+              ><span>La evidencia, siempre a la vista.</span>
             </div>
+          </aside>
         </div>
-    </header>
+        <section class="suggestions" aria-labelledby="tituloEjemplos">
+          <div class="suggestions-heading">
+            <h2 id="tituloEjemplos">Un buen lugar para empezar</h2>
+            <span>ELIGE UNA IDEA Y HAZLA TUYA</span>
+          </div>
+          <div class="suggestion-grid">
+            <button
+              class="suggestion"
+              type="button"
+              data-pregunta="¿En qué se diferencian las arquitecturas RAG y el fine-tuning para crear un asistente de inteligencia artificial?"
+            >
+              <span class="suggestion-category"
+                ><i class="bi bi-stars" aria-hidden="true"></i> INTELIGENCIA
+                ARTIFICIAL</span
+              ><span>RAG o fine-tuning: <br />¿qué enfoque elegir?</span
+              ><i
+                class="bi bi-arrow-up-right suggestion-arrow"
+                aria-hidden="true"
+              ></i></button
+            ><button
+              class="suggestion"
+              type="button"
+              data-pregunta="¿Cuáles son las mejores prácticas para proteger una API REST y cómo se complementan OAuth 2.0 y JWT?"
+            >
+              <span class="suggestion-category"
+                ><i class="bi bi-shield-check" aria-hidden="true"></i>
+                CIBERSEGURIDAD</span
+              ><span>APIs más seguras. <br />Explora sus fundamentos.</span
+              ><i
+                class="bi bi-arrow-up-right suggestion-arrow"
+                aria-hidden="true"
+              ></i></button
+            ><button
+              class="suggestion"
+              type="button"
+              data-pregunta="¿Cómo se comparan LoRaWAN, Wi-Fi y 5G para conectar dispositivos IoT en distintos escenarios?"
+            >
+              <span class="suggestion-category"
+                ><i class="bi bi-broadcast" aria-hidden="true"></i>
+                CONECTIVIDAD</span
+              ><span>Un mundo conectado. <br />Compara tecnologías IoT.</span
+              ><i
+                class="bi bi-arrow-up-right suggestion-arrow"
+                aria-hidden="true"
+              ></i>
+            </button>
+          </div>
+        </section>
+        <p class="scope-note">
+          <i class="bi bi-info-circle" aria-hidden="true"></i> Especializado en
+          TIC: software, IA, redes, seguridad, datos, nube e IoT. Las consultas
+          fuera de este ámbito se rechazan. El modo profundo puede tardar más y
+          consumir más tokens.
+        </p>
+        <section
+          id="error"
+          role="alert"
+          class="alert alert-danger d-none"
+        ></section>
 
-    <main class="container main-content">
-
-        <div class="row justify-content-center">
-            <div class="col-xl-10">
-
-                <section class="glass-card composer-card mb-4">
-                    <div class="card-topbar"></div>
-
-                    <div class="p-4 p-lg-5">
-
-                        <div class="section-heading mb-3">
-                            <div class="section-icon">
-                                <i class="bi bi-question-circle"></i>
-                            </div>
-
-                            <div>
-                                <span class="section-kicker">CONSULTA</span>
-                                <h2 class="section-title mb-1">
-                                    Pregunta de investigación
-                                </h2>
-                                <p id="ayudaPregunta" class="section-subtitle mb-0">
-                                    Solo preguntas de TIC: software, IA, redes,
-                                    ciberseguridad, datos, nube e IoT. Las consultas
-                                    fuera de esta especialidad se rechazan.
-                                </p>
-                            </div>
-                        </div>
-
-                        <textarea
-                            id="pregunta"
-                            class="form-control question-box"
-                            rows="4"
-                            maxlength="4000"
-                            aria-label="Pregunta de investigación"
-                            aria-describedby="ayudaPregunta"
-                            placeholder="Ejemplo: ¿Cuáles son las principales tecnologías de conectividad utilizadas actualmente en IoT y en qué escenarios conviene utilizar cada una?"
-                        ></textarea>
-
-                        <div id="contenedorAcceso" class="mt-3 d-none">
-                            <label for="codigoAcceso" class="form-label fw-semibold">Código de acceso</label>
-                            <input id="codigoAcceso" type="password" class="form-control" autocomplete="off" placeholder="Código privado de Radar TIC">
-                        </div>
-
-                        <div class="research-controls mt-3">
-                            <div>
-                                <label for="modo" class="form-label fw-semibold">Modo de investigación</label>
-                                <select id="modo" class="form-select">
-                                    <option value="rapido">Rápido · síntesis breve</option>
-                                    <option value="comparativo">Comparativo · alternativas y perspectivas</option>
-                                    <option value="profundo">Profundo · análisis con mayor detalle</option>
-                                </select>
-                            </div>
-                            <div class="web-option">
-                                <label class="form-check">
-                                    <input id="usarWeb" class="form-check-input" type="checkbox" checked>
-                                    <span class="form-check-label">Usar búsqueda web</span>
-                                </label>
-                                <div class="helper-text small">Desactívala para comparar la misma pregunta sin consultar Internet.</div>
-                            </div>
-                        </div>
-                        <p class="helper-text small mt-3 mb-0">El modo profundo puede tardar más y consumir más tokens. La comprobación de especialidad y la investigación utilizan tu API de OpenAI.</p>
-                        <p id="servidorEstado" class="helper-text small mt-2 mb-0" role="status">Comprobando el servidor...</p>
-
-                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
-                            <div class="helper-text">
-                                <i class="bi bi-info-circle me-1"></i>
-                                El agente mostrará en vivo las fuentes que vaya consultando.
-                            </div>
-
-                            <button id="btnCancelar" type="button" class="btn btn-outline-secondary d-none">Cancelar</button>
-                            <button
-                                id="btnInvestigar"
-                                class="btn btn-primary btn-lg action-btn"
-                            >
-                                <i class="bi bi-rocket-takeoff me-2"></i>
-                                Iniciar investigación
-                            </button>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section
-                    id="actividad"
-                    aria-busy="false"
-                    class="glass-card mb-4 d-none"
-                >
-                    <div class="p-4 p-lg-5">
-
-                        <div class="d-flex flex-column flex-lg-row gap-4">
-
-                            <div class="flex-grow-1">
-                                <div class="section-heading mb-3">
-                                    <div class="section-icon pulse-icon">
-                                        <i class="bi bi-cpu"></i>
-                                    </div>
-
-                                    <div>
-                                        <span class="section-kicker">PROCESO</span>
-                                        <h2 class="section-title mb-1">
-                                            Actividad del agente
-                                        </h2>
-                                        <p class="section-subtitle mb-0">
-                                            Visualiza el avance de la investigación en tiempo real.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div
-                                    id="estadoActual"
-                                    role="status"
-                                    aria-live="polite"
-                                    class="status-ribbon mb-4"
-                                >
-                                    Preparando la investigación...
-                                </div>
-
-                                <div class="process-track">
-                                    <div class="track-line"></div>
-
-                                    <div class="process-step" data-etapa="analizando">
-                                        <div class="process-bullet">
-                                            <i class="bi bi-lightbulb"></i>
-                                        </div>
-                                        <div class="process-label">Analizar</div>
-                                    </div>
-
-                                    <div class="process-step" data-etapa="busqueda">
-                                        <div class="process-bullet">
-                                            <i class="bi bi-globe2"></i>
-                                        </div>
-                                        <div class="process-label">Buscar</div>
-                                    </div>
-
-                                    <div class="process-step" data-etapa="revision">
-                                        <div class="process-bullet">
-                                            <i class="bi bi-journal-text"></i>
-                                        </div>
-                                        <div class="process-label">Revisar</div>
-                                    </div>
-
-                                    <div class="process-step" data-etapa="finalizando">
-                                        <div class="process-bullet">
-                                            <i class="bi bi-check2-square"></i>
-                                        </div>
-                                        <div class="process-label">Sintetizar</div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    id="previewReporte"
-                                    class="preview-panel mt-4"
-                                >
-                                    <div class="preview-header">
-                                        <i class="bi bi-file-earmark-text me-2"></i>
-                                        Borrador del reporte
-                                    </div>
-
-                                    <div
-                                        id="previewContent"
-                                        class="preview-content"
-                                    >
-                                        El borrador aparecerá aquí mientras el agente redacta.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <aside class="sources-sidebar">
-                                <div class="sidebar-header">
-                                    <div>
-                                        <span class="section-kicker">EVIDENCIA</span>
-                                        <h3 class="h5 mb-1">
-                                            Fuentes detectadas
-                                        </h3>
-                                        <p class="section-subtitle mb-0">
-                                            Sitios consultados durante la investigación.
-                                        </p>
-                                    </div>
-
-                                    <span
-                                        id="contadorFuentes"
-                                        class="counter-pill"
-                                    >
-                                        0
-                                    </span>
-                                </div>
-
-                                <div
-                                    id="fuentesEnVivo"
-                                    class="live-sources"
-                                >
-                                    <div
-                                        id="sinFuentes"
-                                        class="empty-sources"
-                                    >
-                                        Las fuentes aparecerán aquí conforme el agente
-                                        vaya consultándolas.
-                                    </div>
-                                </div>
-                            </aside>
-
-                        </div>
-
-                    </div>
-                </section>
-
-                <section
-                    id="error"
-                    role="alert"
-                    class="alert alert-danger shadow-sm d-none"
-                ></section>
-
-                <section
-                    id="resultado"
-                    class="d-none"
-                >
-                    <div class="result-top">
-                        <div>
-                            <span class="section-kicker">RESULTADO</span>
-                            <h2 class="section-title mb-1">
-                                Reporte de investigación
-                            </h2>
-                            <p class="section-subtitle mb-0">
-                                Resultado final generado a partir de la búsqueda y análisis de fuentes.
-                            </p>
-                        </div>
-
-                        <button id="btnDescargar" type="button" class="btn btn-outline-primary" disabled>Descargar reporte</button>
-                        <div class="result-badge">
-                            <i class="bi bi-check-circle-fill me-1"></i>
-                            Listo
-                        </div>
-                    </div>
-
-                    <p id="metadatosResultado" class="helper-text small mt-2"></p>
-                    <div
-                        id="reporte"
-                        class="report-layout"
-                    ></div>
-
-                    <section class="glass-card mt-4">
-                        <div class="p-4 p-lg-5">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-                                <div>
-                                    <span class="section-kicker">REFERENCIAS</span>
-                                    <h3 class="section-title h4 mb-1">
-                                        Fuentes consultadas
-                                    </h3>
-                                    <p class="section-subtitle mb-0">
-                                        URLs detectadas por la actividad de búsqueda y por las citas del reporte.
-                                    </p>
-                                </div>
-
-                                <span
-                                    id="contadorFuentesFinal"
-                                    class="counter-pill solid"
-                                >
-                                    0
-                                </span>
-                            </div>
-
-                            <div
-                                id="fuentesFinales"
-                                class="row g-3"
-                            ></div>
-                        </div>
-                    </section>
-                </section>
-
+        <section
+          id="actividad"
+          class="activity-panel d-none"
+          aria-busy="false"
+          aria-labelledby="tituloActividad"
+        >
+          <div class="panel-heading">
+            <div>
+              <span id="actividadKicker" class="section-kicker"
+                >ACTIVIDAD DE INVESTIGACIÓN</span
+              >
+              <h2 id="tituloActividad" class="section-title">
+                Cada hallazgo cuenta.
+              </h2>
             </div>
-        </div>
+            <span class="activity-label"
+              ><span></span> Actividad del agente</span
+            >
+          </div>
+          <div class="activity-grid">
+            <div class="activity-main">
+              <div
+                id="estadoActual"
+                class="status-ribbon"
+                role="status"
+                aria-live="polite"
+              >
+                Preparando la investigación...
+              </div>
+              <div class="process-track">
+                <div class="process-step" data-etapa="analizando">
+                  <div class="process-bullet">
+                    <i class="bi bi-lightbulb" aria-hidden="true"></i>
+                  </div>
+                  <div class="process-label">Analizar</div>
+                </div>
+                <div class="process-step" data-etapa="busqueda">
+                  <div class="process-bullet">
+                    <i class="bi bi-globe2" aria-hidden="true"></i>
+                  </div>
+                  <div class="process-label">Buscar</div>
+                </div>
+                <div class="process-step" data-etapa="revision">
+                  <div class="process-bullet">
+                    <i class="bi bi-journal-text" aria-hidden="true"></i>
+                  </div>
+                  <div class="process-label">Revisar</div>
+                </div>
+                <div class="process-step" data-etapa="finalizando">
+                  <div class="process-bullet">
+                    <i class="bi bi-check2-square" aria-hidden="true"></i>
+                  </div>
+                  <div class="process-label">Sintetizar</div>
+                </div>
+              </div>
+              <div id="previewReporte" class="preview-panel">
+                <div class="preview-header">
+                  <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                  Borrador del reporte
+                </div>
+                <div id="previewContent" class="preview-content">
+                  El borrador aparecerá aquí mientras el agente redacta.
+                </div>
+              </div>
+            </div>
+            <aside
+              class="sources-sidebar"
+              aria-label="Fuentes durante la investigación"
+            >
+              <div class="sidebar-header">
+                <h3>Fuentes detectadas</h3>
+                <span id="contadorFuentes" class="counter-pill">0</span>
+              </div>
+              <p class="section-subtitle">
+                Evidencia recibida durante la investigación.
+              </p>
+              <div id="fuentesEnVivo" class="live-sources">
+                <div id="sinFuentes" class="empty-sources">
+                  Las fuentes aparecerán aquí conforme el agente vaya
+                  consultándolas.
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
 
-    </main>
-
-    <footer class="footer py-4 mt-5">
-        <div class="container text-center small text-muted">
-            Inteligencia Artificial Aplicada a las TIC · Práctica 2.2 · Agente de investigación con búsqueda web
-        </div>
-    </footer>
-
+        <section
+          id="resultado"
+          class="d-none"
+          aria-labelledby="tituloResultado"
+        >
+          <div class="result-top">
+            <div>
+              <span class="section-kicker">CONOCIMIENTO CON PERSPECTIVA</span>
+              <h2 id="tituloResultado" class="section-title">
+                Tu investigación, en claro.
+              </h2>
+            </div>
+            <div class="result-actions">
+              <span class="result-badge"
+                ><i class="bi bi-check-circle" aria-hidden="true"></i>
+                Completada</span
+              ><button
+                id="btnDescargar"
+                class="btn btn-outline-primary"
+                type="button"
+                disabled
+              >
+                <i class="bi bi-download" aria-hidden="true"></i> Descargar
+                reporte
+              </button>
+            </div>
+          </div>
+          <p id="metadatosResultado" class="result-metadata"></p>
+          <div id="reporte" class="report-layout"></div>
+          <section class="references-panel" aria-labelledby="tituloFuentes">
+            <div class="panel-heading">
+              <div>
+                <span class="section-kicker">EXPLORA LA EVIDENCIA</span>
+                <h3 id="tituloFuentes" class="section-title">
+                  Fuentes consultadas
+                </h3>
+                <p class="section-subtitle">
+                  Enlaces de la búsqueda y de las citas del reporte.
+                </p>
+              </div>
+              <span id="contadorFuentesFinal" class="counter-pill solid"
+                >0</span
+              >
+            </div>
+            <div id="fuentesFinales" class="row g-3"></div>
+          </section>
+        </section>
+        <footer class="workspace-footer">
+          <span
+            >Radar TIC <span class="footer-divider">/</span> Inteligencia para
+            explorar.</span
+          ><span>Revisa las fuentes. Construye tu criterio.</span>
+        </footer>
+      </main>
+    </div>
     <script src="assets/js/runtime-config.js"></script>
     <script src="assets/js/config.js?v=4"></script>
     <script src="assets/js/api.js?v=4"></script>
-    <script src="assets/js/app.js?v=6"></script>
-
-</body>
-
+    <script src="assets/js/app.js?v=20261026"></script>
+  </body>
 </html>
